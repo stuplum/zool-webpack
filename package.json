@@ -1,0 +1,47 @@
+{
+  "name": "zool-webpack",
+  "version": "0.1.0",
+  "description": "A Hapi.js plugin for compiling and serving JS files using webpack. The files are bundled and served per request. This is not for use in a production system. It's sole use is for serving bundles on the fly",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha --ui bdd"
+  },
+  "author": {
+    "name": "Stuart Plumbley",
+    "email": "stuplum@inkfish.co",
+    "url": "http://stuplum.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/stuplum/zool-webpack.git"
+  },
+  "bugs": {
+    "url": "http://github.com/stuplum/zool-webpack/issues"
+  },
+  "keywords": [
+    "hapi",
+    "hapijs",
+    "webpack"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "hapi": ">=10.0.0"
+  },
+  "dependencies": {
+    "boom": "^2.8.0",
+    "colors": "1.1.2",
+    "hoek": "^2.3.0",
+    "memory-fs": "0.3.0",
+    "webpack": "1.12.11"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "code": "2.1.0",
+    "lab": "8.2.0",
+    "mocha": "^1.17.1",
+    "zool-test-support": "0.1.0"
+  }
+}
