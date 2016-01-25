@@ -62,4 +62,13 @@ describe('zool-webpack', function () {
 
     });
 
+    it('should return a 404 if no index file is found within a directory', function (done) {
+
+        server.inject({ method: 'GET', url: '/js/no-index.js' }, function (response) {
+            expect(response.statusCode).to.be.equal(404);
+            done();
+        });
+
+    });
+
 });
