@@ -1,19 +1,17 @@
 'use strict';
 
 const Hapi = require('hapi');
-const expect = require('chai').expect;
-
-const TempDir = require('zool-test-support').TempDir;
 
 describe('zool-webpack', function () {
 
-    let tempDir = new TempDir('zool-webpack-tests');
+    const temp = new Temp('zool-webpack-tests');
+
     let server;
 
-    tempDir.prepare({ 'dave.js': { 'some-json': 'dave' } });
+    temp.prepare({ 'dave.js': { 'some-json': 'dave' } });
 
     after(function (done) {
-        tempDir.clean();
+        temp.clean();
         done();
     });
 
@@ -22,7 +20,7 @@ describe('zool-webpack', function () {
         server = new Hapi.Server();
         server.connection({ port: 8000 });
 
-        server.register([{ register: require('../'), options: { src: 'test/support' } }], done);
+        server.register([{ register: require('../').route, options: { src: 'test/support' } }], done);
     });
 
     it('should compile a js file', function (done) {
