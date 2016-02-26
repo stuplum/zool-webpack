@@ -2,25 +2,30 @@
 
 const Hapi = require('hapi');
 
-describe('zool-webpack', function () {
+describe('zool-webpack: default settings', function () {
 
     const temp = new Temp('zool-webpack-tests');
 
     let server;
 
-    temp.prepare({ 'dave.js': { 'some-json': 'dave' } });
+    temp.create({ 'dave.js': { 'some-json': 'dave' } });
 
     after(function (done) {
-        temp.clean();
+        temp.cleanUp();
         done();
     });
 
     beforeEach(function (done) {
 
+        const wpConfig = {
+            context: 'test',
+            src: 'support'
+        };
+
         server = new Hapi.Server();
         server.connection({ port: 8000 });
 
-        server.register([{ register: require('../').route, options: { src: 'test/support' } }], done);
+        server.register([{ register: require('../').route, options: wpConfig }], done);
     });
 
     it('should compile a js file', function (done) {
