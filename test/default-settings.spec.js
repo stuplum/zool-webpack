@@ -8,7 +8,12 @@ describe('zool-webpack: default settings', function () {
 
     let server;
 
-    temp.create({ 'dave.js': { 'some-json': 'dave' } });
+    temp.create({
+        'dave.js': 'console.log(\'dave woz ere\');',
+        'chaz/index.js': 'console.log(\'so woz chaz\');',
+        'no-index/not-index.js': 'console.log(\'no can haz index\');',
+        'no-compile.js': 'var broken = { some ;'
+    });
 
     after(function (done) {
         temp.cleanUp();
@@ -18,8 +23,8 @@ describe('zool-webpack: default settings', function () {
     beforeEach(function (done) {
 
         const wpConfig = {
-            context: 'test',
-            src: 'support'
+            context: temp.baseDir,
+            src: temp.location
         };
 
         server = new Hapi.Server();
@@ -69,6 +74,15 @@ describe('zool-webpack: default settings', function () {
 
         server.inject({ method: 'GET', url: '/js/no-index.js' }, function (response) {
             expect(response.statusCode).to.be.equal(404);
+            done();
+        });
+
+    });
+
+    it('should return a 500 if file does not compile', function (done) {
+
+        server.inject({ method: 'GET', url: '/js/no-compile.js' }, function (response) {
+            expect(response.statusCode).to.be.equal(500);
             done();
         });
 

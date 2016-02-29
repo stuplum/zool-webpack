@@ -31,11 +31,12 @@
     "hapi": ">=10.0.0"
   },
   "dependencies": {
+    "bluebird": "3.3.3",
     "boom": "^2.8.0",
     "hoek": "^2.3.0",
     "memory-fs": "0.3.0",
     "webpack": "1.12.11",
-    "zool-utils": "0.1.1"
+    "zool-utils": "0.2.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
