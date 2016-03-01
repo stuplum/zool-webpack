@@ -1,6 +1,6 @@
 {
   "name": "zool-webpack",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A Hapi.js plugin for compiling and serving JS files using webpack. The files are bundled and served per request. This is not for use in a production system. It's sole use is for serving bundles on the fly",
   "main": "index.js",
   "scripts": {
