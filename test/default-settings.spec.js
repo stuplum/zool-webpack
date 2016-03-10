@@ -65,6 +65,7 @@ describe('zool-webpack: default settings', function () {
 
         server.inject({ method: 'GET', url: '/js/unknown.js' }, function (response) {
             expect(response.statusCode).to.be.equal(404);
+            expect(response.payload).to.be.equal('Not Found: /js/unknown.js');
             done();
         });
 
@@ -74,6 +75,7 @@ describe('zool-webpack: default settings', function () {
 
         server.inject({ method: 'GET', url: '/js/no-index.js' }, function (response) {
             expect(response.statusCode).to.be.equal(404);
+            expect(response.payload).to.be.equal('Not Found: /js/no-index.js');
             done();
         });
 
@@ -83,6 +85,11 @@ describe('zool-webpack: default settings', function () {
 
         server.inject({ method: 'GET', url: '/js/no-compile.js' }, function (response) {
             expect(response.statusCode).to.be.equal(500);
+
+            expect(response.payload).to.contain('Line 1: Unexpected token ;');
+            expect(response.payload).to.contain('You may need an appropriate loader to handle this file type.');
+            expect(response.payload).to.contain('| var broken = { some ;');
+
             done();
         });
 
