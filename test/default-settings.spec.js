@@ -30,7 +30,7 @@ describe('zool-webpack: default settings', function () {
         server = new Hapi.Server();
         server.connection({ port: 8000 });
 
-        server.register([{ register: require('../').route, options: wpConfig }], done);
+        server.register([{ register: require('../'), options: wpConfig }], done);
     });
 
     it('should compile a js file', function (done) {

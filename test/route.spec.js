@@ -24,7 +24,7 @@ describe('zool-webpack: route', function () {
         server = new Hapi.Server();
         server.connection({ port: 8000 });
 
-        server.register([{ register: require('../').route, options: { context: temp.baseDir, src: temp.location } }], done);
+        server.register([{ register: require('../'), options: { context: temp.baseDir, src: temp.location } }], done);
     });
 
     it('should be exported', function (done) {
