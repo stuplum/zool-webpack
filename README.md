@@ -35,7 +35,7 @@ server.register({
     , function (err) {
         if (err) throw err;
         server.start(function () {
-            server.log("Hapi server started @ " + server.info.uri);
+            server.log('Hapi server started @ ' + server.info.uri);
         });
     }
 );
@@ -44,5 +44,6 @@ server.register({
 ### Options:
 
 * `debug`: used to print statements to the console. Defaults to `false`
-* `src`: the directory to find the requested `.js` file. Defaults to `undefined`
+* `context`: The base directory (absolute path!) for resolving the src option. Defaults to `undefined` - mandatory option
+* `src`: the directory to find the requested `.js` file. Defaults to `undefined` - mandatory option
 * `routePath`: the route to register with hapijs. Defaults to `/js/{module*}`. 
