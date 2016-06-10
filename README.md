@@ -25,7 +25,8 @@ server.connection({ port: 1337 });
 var options = {
     debug: true,
     src: true,
-    routePath: '/js/{module*}'
+    routePath: '/js/{module*}',
+    entryNameTemplate: '[name].module'
 };
 
 server.register({
@@ -47,3 +48,36 @@ server.register({
 * `context`: The base directory (absolute path!) for resolving the src option. Defaults to `undefined` - mandatory option
 * `src`: the directory to find the requested `.js` file. Defaults to `undefined` - mandatory option
 * `routePath`: the route to register with hapijs. Defaults to `/js/{module*}`. 
+* `entryNameTemplate`: this determines the name of the entry file that webpack will use to compile a standalone component. Defaults to `[name]`.
+
+#### entryNameTemplate (string || function)
+
+##### string
+```
+var options = {
+    ...
+    entryNameTemplate: '[name].module'
+};
+```
+
+Given a module name of 'foo', using the string template would result in the compiler looking for:
+
+* foo.module
+* foo.module.js
+* foo.module/index
+* foo.module/index.js
+
+##### function
+```
+var options = {
+    ...
+    entryNameTemplate: name => `some.${name}.component`
+};
+```
+
+Given a module name of 'bar', using the string template would result in the compiler looking for:
+
+* some.bar.component
+* some.bar.component.js
+* some.bar.component/index
+* some.bar.component/index.js
